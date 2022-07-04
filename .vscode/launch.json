@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        
+        {
+            "name": "shop",
+            "type": "python",
+            "request": "launch",
+            "module": "shop",
+            "justMyCode": true
+            "console": "internalConsole"
+        }
+    ]
+}
