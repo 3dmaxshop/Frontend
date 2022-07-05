@@ -1,4 +1,4 @@
-from shop.API.models import ModelsApi
+from shop.api.models import ModelsApi
 from shop.config import config
 
 

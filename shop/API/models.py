@@ -1,7 +1,6 @@
-from typing import Any
-from shop.API.schemas import Model
-
 import httpx
+
+from shop.api.schemas import Model
 
 
 class ModelsApi:
@@ -9,7 +8,7 @@ class ModelsApi:
     def __init__(self, url: str) -> None:
         self.url = url
 
-    def get_all(self) -> list[dict[str, Any]]:
+    def get_all(self) -> list[Model]:
         response = httpx.get(f'{self.url}/api/v1/models/')
         response.raise_for_status()
 

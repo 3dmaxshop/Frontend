@@ -10,7 +10,6 @@ app.register_blueprint(models.routes, url_prefix='/')
 
 @app.route('/')
 def index():
-    name_project = '3dMaxShop'
     return render_template('index.html', content='3dshop')
 
 
