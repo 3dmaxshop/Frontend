@@ -6,6 +6,8 @@ authors = ["Dmitriy Volynkin <volynkin-da@yandex.ru>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+httpx = "^0.23.0"
+pydantic = "^1.9.1"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.961"
