@@ -5,7 +5,7 @@ from shop.views import models
 
 app = Flask(__name__)
 
-app.register_blueprint(models.routes, url_prefix='/')
+app.register_blueprint(models.routes, url_prefix='/models')
 
 
 @app.route('/')
