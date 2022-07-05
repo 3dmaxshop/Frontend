@@ -1,6 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{content}}</h1>
+<div class="container my-2">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+        {% for entity in models %}
+            <div class="card rounded-card m-1">
+                <div class="row">
+                    <div class="col">
+                        <h5>Model: {{ entity.uid }}</h5>
+                    </div>
+                    <div class="col">
+                        <h5>{{ entity.name }}</h5>
+                    </div>
+                </div>
+                <img src="/static/images/sofa.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Категория: {{ entity.categories }}</h5>
+                <h6>Цвет: {{ entity.color }}</h6>
+                <a href="#" class="btn btn-success rounded-card">Edit</a>
+                <a href="#" class="btn btn-danger rounded-card" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
 
