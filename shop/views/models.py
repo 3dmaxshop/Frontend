@@ -1,8 +1,8 @@
+from typing import Any
+
 from flask import Blueprint, redirect, render_template, request, url_for
 
 from shop.api.client import client
-
-from typing import Any
 
 routes = Blueprint('models', __name__)
 
@@ -24,4 +24,12 @@ def delete():
 def change():
     payload: dict[str, Any] = dict(request.form)
     client.models.change(payload)
+    return redirect(url_for('models.get_all'))
+
+
+@routes.post('/add')
+def add():
+    payload: dict[str, Any] = dict(request.form)
+    payload['uid'] = 1
+    client.models.add(payload)
     return redirect(url_for('models.get_all'))
