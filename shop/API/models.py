@@ -1,4 +1,5 @@
 import httpx
+import orjson
 
 from shop.api.schemas import Model
 
@@ -16,4 +17,14 @@ class ModelsApi:
 
     def delete(self, uid):
         response = httpx.delete(f'{self.url}/api/v1/models/{uid}')
+        response.raise_for_status()
+
+    def change(self, model):
+        model = Model(**model)
+        dict_model = model.dict()
+        json_model = orjson.dumps(dict_model)
+        headers = {
+            'Content-Type': 'application/json',
+        }
+        response = httpx.put(f'{self.url}/api/v1/models/', content=json_model, headers=headers)
         response.raise_for_status()
