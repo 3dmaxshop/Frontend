@@ -3,6 +3,7 @@ from typing import Any
 from flask import Blueprint, redirect, render_template, request, url_for
 
 from shop.api.client import client
+from shop.api.schemas import Model
 
 routes = Blueprint('models', __name__)
 
@@ -31,5 +32,6 @@ def change():
 def add():
     payload: dict[str, Any] = dict(request.form)
     payload['uid'] = 1
-    client.models.add(payload)
+    model = Model(**payload)
+    client.models.add(model)
     return redirect(url_for('models.get_all'))

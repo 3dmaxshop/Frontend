@@ -20,7 +20,6 @@ class ModelsApi:
         response.raise_for_status()
 
     def change(self, model):
-        model = Model(**model)
         dict_model = model.dict()
         json_model = orjson.dumps(dict_model)
         headers = {
@@ -30,7 +29,6 @@ class ModelsApi:
         response.raise_for_status()
 
     def add(self, model):
-        model = Model(**model)
         dict_model = model.dict()
         json_model = orjson.dumps(dict_model)
         headers = {
