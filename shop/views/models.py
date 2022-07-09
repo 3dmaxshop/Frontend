@@ -24,6 +24,7 @@ def delete():
 @routes.post('/change')
 def change():
     payload: dict[str, Any] = dict(request.form)
+    payload = Model(**payload)
     client.models.change(payload)
     return redirect(url_for('models.get_all'))
 
@@ -35,3 +36,10 @@ def add():
     model = Model(**payload)
     client.models.add(model)
     return redirect(url_for('models.get_all'))
+
+
+@routes.get('/edit/<int:uid>')
+def edit_page(uid):
+    model = client.models.get_by_uid(uid)
+    #categories = client.categories.get_all()
+    return render_template('model_edit.html', model=model)

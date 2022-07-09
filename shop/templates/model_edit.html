@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+            <div class="container my-2">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+                        <div class="card rounded-card m-1">
+                            <form action="{{url_for('models.change', uid=model.uid)}}" method="post">
+                            <img src="/static/images/sofa.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h6 class="card-title">Uid: {{model.uid}}</h6><input type="hidden" name="uid" value="{{model.uid}}"><br>
+                            {% for atribute in model %}
+                                {% if atribute[0] != 'uid' %}
+                                <h6 class="card-title">{{ atribute[0] }}: </h6><input type="text" name="{{ atribute[0] }}" value="{{ atribute[1] }}"><br><br>
+                                {% endif %}
+                            {% endfor %}
+                            <button type="submit" class="btn btn-success">Edite</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+{% endblock %}
+
