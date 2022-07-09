@@ -11,7 +11,8 @@ routes = Blueprint('models', __name__)
 @routes.get('/')
 def get_all():
     models = client.models.get_all()
-    return render_template('models.html', page_tittle='models_list', models=models)
+    categories = client.categories.get_all()
+    return render_template('models.html', page_tittle='models_list', models=models, categories=categories)
 
 
 @routes.post('/delete')
@@ -41,5 +42,5 @@ def add():
 @routes.get('/edit/<int:uid>')
 def edit_page(uid):
     model = client.models.get_by_uid(uid)
-    #categories = client.categories.get_all()
-    return render_template('model_edit.html', model=model)
+    categories = client.categories.get_all()
+    return render_template('model_edit.html', model=model, categories=categories)

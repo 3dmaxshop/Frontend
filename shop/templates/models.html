@@ -43,13 +43,22 @@
             <div class="offcanvas-body">
                 <form action="{{url_for('models.add')}}" method="post">
                         {% for atributes in models[0] %}
-                        {% if atributes[0] != 'uid' %}
+                        {% if atributes[0] != 'uid' and atributes[0] != 'category_id'  %}
                         <div class="form-floating mb-2">
                             <input type="text" class="form-control" name="{{ atributes[0] }}" id="{{ atributes[1] }}" required>
                             <label for="floatingInput">{{ atributes[0] }}</label>
                         </div>
                         {% endif %}
                         {% endfor %}
+                        <div class="form-floating mb-2">
+                            <select id="disabledSelect" class="form-select" name="category_id">
+                                <option value="">No category</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.uid }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="floatingPassword">Project</label>
+                        </div>
                         <button type="submit" class="btn btn-success">Add</button>
                 </form>
             </div>
