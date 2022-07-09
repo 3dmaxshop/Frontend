@@ -37,7 +37,7 @@
                                 <h6 class="card-title">{{ atributes[0] }}:</h6><input type="text" name="{{ atributes[0] }}" value="{{ atributes[1] }}"><br><br>
                                 {% endif %}
                             {% endfor %}
-                            <button type="submit" class="btn btn-success">Edite</button>
+                            <a href="edit/{{ entity.uid }}" class="btn btn-success rounded-card">Edit</a>
                             </form>
                             <form action="{{url_for('models.delete', uid=entity.uid)}}" method="post">
                             <input type="hidden" name="uid" value="{{ entity.uid }}">

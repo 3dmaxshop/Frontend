@@ -15,11 +15,17 @@ class ModelsApi:
 
         return [Model(**model) for model in response.json()]
 
+    def get_by_uid(self, uid) -> Model:
+        response = httpx.get(f'{self.url}/api/v1/models/{uid}')
+        response.raise_for_status()
+
+        return Model(**response.json())
+
     def delete(self, uid):
         response = httpx.delete(f'{self.url}/api/v1/models/{uid}')
         response.raise_for_status()
 
-    def change(self, model):
+    def change(self, model: Model):
         dict_model = model.dict()
         json_model = orjson.dumps(dict_model)
         headers = {
@@ -28,7 +34,7 @@ class ModelsApi:
         response = httpx.put(f'{self.url}/api/v1/models/', content=json_model, headers=headers)
         response.raise_for_status()
 
-    def add(self, model):
+    def add(self, model: Model):
         dict_model = model.dict()
         json_model = orjson.dumps(dict_model)
         headers = {
