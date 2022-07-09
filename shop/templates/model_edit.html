@@ -10,7 +10,7 @@
                             <div class="card-body">
                             <h6 class="card-title">Uid: {{model.uid}}</h6><input type="hidden" name="uid" value="{{model.uid}}"><br>
                             {% for atribute in model %}
-                                {% if atribute != 'uid' %}
+                                {% if atribute[0] != 'uid' %}
                                 <h6 class="card-title">{{ atribute[0] }}: </h6><input type="text" name="{{ atribute[0] }}" value="{{ atribute[1] }}"><br><br>
                                 {% endif %}
                             {% endfor %}

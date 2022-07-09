@@ -1,27 +1,61 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="container my-2">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
-                        <div class="card rounded-card m-1">
-                            <form action="{{url_for('models.add')}}" method="post">
-                            <img src="/static/images/sofa.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                {% for atributes in models[0] %}
-                                {% if atributes[0] != 'uid' %}
-                                <h6 class="card-title">{{ atributes[0] }}:</h6><input type="text" name="{{ atributes[0] }}" value=""><br><br>
-                                {% endif %}
-                                {% endfor %}
-                            <button type="submit" class="btn btn-success">Add</button>
-                            </form>
-                            </div>
-                        </div>
+{% block styles %}
+<style>
+        .card {
+        border-radius: 1em;
+        text-align: center;
+        padding: 1em;
+        }
+        .card:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+        border-radius: 90%;
+        width: 60%;
+        margin: auto;
+        }
+        .rounded-img {
+            width: 50%;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+        .rounded-card {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
 
-                </div>
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-1">
+    <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">+ Add</button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">Add an aerosol can</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            <div class="offcanvas-body">
+                <form action="{{url_for('models.add')}}" method="post">
+                        {% for atributes in models[0] %}
+                        {% if atributes[0] != 'uid' %}
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" name="{{ atributes[0] }}" id="{{ atributes[1] }}" required>
+                            <label for="floatingInput">{{ atributes[0] }}</label>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
         <div class="col-12">
             <div class="container my-2">
@@ -34,7 +68,7 @@
                             <h6 class="card-title">Uid: {{entity.uid}}</h6><input type="hidden" name="uid" value="{{entity.uid}}"><br>
                             {% for atributes in entity %}
                                 {% if atributes[0] != 'uid' %}
-                                <h6 class="card-title">{{ atributes[0] }}:</h6><input type="text" name="{{ atributes[0] }}" value="{{ atributes[1] }}"><br><br>
+                                <h6 class="card-title">{{ atributes[0] }}: {{ atributes[1] }}</h6><br>
                                 {% endif %}
                             {% endfor %}
                             <a href="edit/{{ entity.uid }}" class="btn btn-success rounded-card">Edit</a>
