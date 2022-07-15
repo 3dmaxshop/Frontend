@@ -57,7 +57,7 @@
                                     <option value="{{ category.uid }}">{{ category.name }}</option>
                                 {% endfor %}
                             </select>
-                            <label for="floatingPassword">Project</label>
+                            <label for="floatingPassword">Categories</label>
                         </div>
                         <button type="submit" class="btn btn-success">Add</button>
                 </form>
@@ -65,6 +65,22 @@
         </div>
     </div>
 
+<form action="{{ url_for('models.search_category') }}" method="post">
+    <div class="col-2">
+        <div class="form-floating mb-2">
+            <select id="disabledSelect" class="form-select" name="category_id">
+                <option value="">No category</option>
+                {% for category in categories %}
+                    <option value="{{ category.uid }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="floatingPassword">Categories</label>
+        </div>
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-success">Search</button>
+    </div>
+</form>
 
         <div class="col-12">
             <div class="container my-2">
